@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 # SQLAlchemy
-from model import Base, YourModel
+from model import Base, Idea, Comment,User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -14,7 +14,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-@app.route('/', method=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def sign_in():
 	if request.method == 'GET':
 		return render_template('sign_in.html')
@@ -22,7 +22,7 @@ def sign_in():
 		new_first_name=request.form.get('first_name')
 		check_name=session.query(User).filter_by(firstname=new_first_name).first()
 		new_pass=request.foem.get('password')
-		if check_name.name=new_first_name and check_name.password=new_pass:
+		if check_name.name==new_first_name and check_name.password==new_pass:
 			flash('You were successfully logged in')
 			return render_template('discover.html')
 		else:
@@ -44,8 +44,13 @@ def sign_up():
                          last_name= new_last_name,\
     	                 password= new_pass,\
     	                 profession=new_profession,\
-    	                linkedin_account=new_linkedin_account)
+    	                linkedin_account=new_linkedin_account,\
+    	                photo=avatar.png)
 
         session.add(new_user)
         session.commit()
 
+@app.route('/show_idea/<int:idea_id>')
+def show_idea():
+	new_idea=session.query(idea).filter_by(id=idea_id)
+	return render_template('idea_profile.html',idea_name=new_idea.name,creator=new_idea.owner,describtion=new_idea.describtion,likes=new_idea.likes)
