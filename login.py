@@ -46,3 +46,23 @@ def login_handler(request):
 def logout_handler():
     logout_user()
     return 'Logged out'
+
+
+def sign_up_handler(request):
+    new_first_name    = request.form.get('firstname')
+    new_email         = request.form.get('email')
+    new_last_name     = request.form.get('lastname')
+    new_pass          = request.form.get('pass')
+    new_profession    = request.form.get('profession')
+    new_linkedin_account = request.form.get('linkedin_account')
+    new_user = User(
+        first_name=new_first_name,
+        email=new_email,
+        last_name= new_last_name,
+        profession=new_profession,
+        linkedin_url=new_linkedin_account
+    )
+    new_user.set_password(new_pass)
+    session.add(new_user)        
+    session.commit()
+    login_user(new_user)
