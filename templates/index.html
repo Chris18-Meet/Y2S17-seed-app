@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Hello</title>
+
+
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  </head>
+    <body>
+        <h1 class="1"> Sign up </h1>
+        <div class="div-1">
+        <form>
+        <h3 class"3" > first name </h3> <input type="text" placeholder="Enter firstname" class="userinputs" name="firstname">
+        <h3 class"3" > last name </h3> <input type="text" placeholder="Enter lasttname" class="userinputs" name="lasttname">
+        <h3 class"3" > password </h3> <input type="password" placeholder="Enter password" class="userinputs" name="pass">
+        <h3 class"3" > email </h3> <input type="text" placeholder="Enter email" class="userinputs" name="email">
+        <h3 class"3" > profession </h3> <input type="text" placeholder="Enter profession" class="userinputs" name="profession">
+        <h3 class"3" > linkedin account </h3> <input type="text" placeholder="Enter linkedin account" class="b" name="linkedin_account"> 
+        <br>
+        <input type="submit" name="sign_up" class="">
+        </form>
+        </div>
+     </body>
+</html>
