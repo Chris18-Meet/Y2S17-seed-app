@@ -53,4 +53,4 @@ def sign_up():
 @app.route('/show_idea/<int:idea_id>')
 def show_idea():
 	new_idea=session.query(idea).filter_by(id=idea_id)
-	return render_template('idea_profile.html',idea_name=new_idea.name,creator=new_idea.owner,describtion=new_idea.describtion)
+	return render_template('idea_profile.html',idea_name=new_idea.name,creator=new_idea.owner,describtion=new_idea.describtion,likes=new_idea.likes)
