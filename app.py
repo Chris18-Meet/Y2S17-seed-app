@@ -48,3 +48,4 @@ def sign_up():
 
         session.add(new_user)
         session.commit()
+
