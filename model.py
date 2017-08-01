@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-class Ideas(Base):
+class Idea(Base):
     __tablename__  = 'Ideas'
     id             = Column(Integer, primary_key=True)
     name           = Column(String)
@@ -22,7 +22,7 @@ class Comment(Base):
     idea           = Column(String)
     owner          = Column(String)
 
-class Users(Base):
+class User(Base):
     __tablename__  = 'Users'
     id             = Column(Integer, primary_key=True)
     first_name     = Column(String)

@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 # SQLAlchemy
-from model import Base, YourModel
+from model import Base, Idea, Comment,User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -14,7 +14,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-@app.route('/', method=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def sign_in():
 	if request.method == 'GET':
 		return render_template('sign_in.html')
@@ -22,7 +22,7 @@ def sign_in():
 		new_first_name=request.form.get('first_name')
 		check_name=session.query(User).filter_by(firstname=new_first_name).first()
 		new_pass=request.foem.get('password')
-		if check_name.name=new_first_name and check_name.password=new_pass:
+		if check_name.name==new_first_name and check_name.password==new_pass:
 			flash('You were successfully logged in')
 			return render_template('discover.html')
 		else:
