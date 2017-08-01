@@ -97,13 +97,17 @@ def add_idea():
         new_name          = request.form.get('idea_name')
         new_describtion   = request.form.get('describtion')
         new_looking_for   = request.form.get('looking_for')
+        new_category      = request.form.get('category')
         new_idea = Idea (name= new_name,\
         				describtion=new_describtion,\
         				looking_for=new_looking_for,\
-        				)
+        				owner=current_user.name,\
+        				likes=0,\
+        				category=new_category)
 
-        session.add(new_user)
+        session.add(new_idea)
         session.commit()
+        return redirect('discover.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
