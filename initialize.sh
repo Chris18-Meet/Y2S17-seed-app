@@ -5,6 +5,7 @@ cd ~/
 
 if [[ -e y2-venv ]]; then
     source ~/y2-venv/bin/activate
+    pip install -r $old_pwd/requirements.txt
 else
      sudo apt-get install virtualenv
      virtualenv -p $(which python3) y2-venv
