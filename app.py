@@ -44,8 +44,13 @@ def sign_up():
                          last_name= new_last_name,\
     	                 password= new_pass,\
     	                 profession=new_profession,\
-    	                linkedin_account=new_linkedin_account)
+    	                linkedin_account=new_linkedin_account,\
+    	                photo=avatar.png)
 
         session.add(new_user)
         session.commit()
 
+@app.route('/show_idea/<int:idea_id>')
+def show_idea():
+	new_idea=session.query(idea).filter_by(id=idea_id)
+	return render_template('idea_profile.html',idea_name=new_idea.name,creator=new_idea.owner,describtion=new_idea.describtion)

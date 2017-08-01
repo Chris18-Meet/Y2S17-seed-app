@@ -31,6 +31,7 @@ class User(Base):
     password       = Column(String)
     profession     = Column(String)
     linkedin_url   = Column(String)
+    photo          = Column(String)
 
     # IF YOU NEED TO CREATE OTHER TABLE 
 # FOLLOW THE SAME STRUCTURE AS YourModel
