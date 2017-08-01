@@ -50,7 +50,20 @@ def sign_up():
         session.add(new_user)
         session.commit()
 
-@app.route('/show_idea/<int:idea_id>')
-def show_idea():
-	new_idea=session.query(idea).filter_by(id=idea_id)
-	return render_template('idea_profile.html',idea_name=new_idea.name,creator=new_idea.owner,describtion=new_idea.describtion,likes=new_idea.likes)
+@app.route('/show_idea/<int:idea_id>', methods=['GET','POST'])
+def show_idea(idea_id):
+    new_idea = {"name": "idea1","description": "description1", "looking_for": "lf1"}
+    comments = [{"name": "comment"}]
+
+    if request.method == 'GET':
+        # new_idea=session.query(Idea).filter_by(id=idea_id).first()
+        
+        return render_template('idea_profile.html',idea=new_idea, comments=comments)
+    else:
+        new_comment = request.form.get('comment')
+        comments.append(new_comment)
+
+        new_comment = Comment
+
+
+

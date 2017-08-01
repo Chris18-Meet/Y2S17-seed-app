@@ -7,6 +7,7 @@
       <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
       <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
 
+      
       <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -37,15 +38,42 @@
     </ul>
   </div>
 </nav>
-<h4>{{idea_name}}</h4> 
+<h4>{{idea.name}}</h4> 
 <br>
-<h5>{{creator}}</h5>
+<h5>{{idea.creator}}</h5>
 <br>
-<p>{{discribtion}}</p>
+<p>{{idea.description}}</p>
 <br>
-<p>{{looking_for}}</p>
+<p>{{idea.looking_for}}</p>
 <br>
 <p>{{likes}}</p>
 </div>
+<div>
+<!--
+  <input type="text" name="idea_comment" placeholder="Add a comment">
+  <button type="submit" value="Comments" onclick="show_idea()">Comment</button>-->
+
+<form>
+  <input type="text" name="comment">
+  <input type="submit" name="comment_button" class="">
+</form>
+
+</div>
+<div class="comments_section">
+  <ol>
+  </ol>
+</div>
+
+<div class="row">
+  <div class="comments_title">Comments:</div>
+  <div class="show_comments">
+  <ul>
+  {% for comment in comments %}
+    <li>{{comment.name}}</li>
+  {% endfor %}
+  </ul>
+  </div>
+</div>
+
   </body>
 </html>
