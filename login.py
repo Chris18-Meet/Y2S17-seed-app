@@ -55,12 +55,14 @@ def sign_up_handler(request):
     new_pass          = request.form.get('pass')
     new_profession    = request.form.get('profession')
     new_linkedin_account = request.form.get('linkedin_account')
+    new_photo=request.form.get('photo')
     new_user = User(
         first_name=new_first_name,
         email=new_email,
         last_name= new_last_name,
         profession=new_profession,
-        linkedin_url=new_linkedin_account
+        linkedin_url=new_linkedin_account,
+        photo=new_photo
     )
     new_user.set_password(new_pass)
     session.add(new_user)        
