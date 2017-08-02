@@ -69,16 +69,32 @@ def discover():
 
 
 
-@app.route('/show_idea/<int:idea_id>')
-@login_required
-def show_idea():
-	new_idea=session.query(Idea).filter_by(id=idea_id).first()
-	return render_template('idea_profile.html',idea_name=new_idea.name,creator=new_idea.owner,describtion=new_idea.describtion,likes=new_idea.likes,looking_for=new_idea.looking_for)
-
 @app.route('/profile')
 @login_required
 def profile():
     return render_template('profile.html',first_name=current_user.first_name,last_name=current_user.last_name,profession=current_user.profession,linkedin_url=current_user.linkedin_url,image_url=current_user.photo)	
+
+@app.route('/show_idea/<int:idea_id>')
+def show_idea(idea_id):
+		idea = session.query(Idea).filter_by(id=idea_id).first()
+		comments = session.query(Comment).filter_by(idea=str(idea_id)).all()
+		return render_template('idea_profile.html', idea=idea, comments =comments)
+
+@app.route('/comment/<int:idea_id>', methods=['GET', 'POST'])
+def add_comment(idea_id):
+	if request.method == 'POST':
+		comment_capture = request.form.get('comment')
+		new_owner = "sample user"
+		idea = str(idea_id)
+		new_comment = Comment(comment = comment_capture, idea=idea, owner = new_owner)
+		session.add(new_comment)
+		session.commit()	
+		return redirect(url_for('show_idea', idea_id=idea))
+
+
+		
+		#idea_name=new_idea.name,creator=new_idea.owner,
+		#describtion=new_idea.describtion,likes=new_idea.likes,looking_for=new_idea.looking_for)
 
 @app.route('/add_idea',methods=['GET','POST'])
 @login_required

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <title>Hello</title>
+      <title>Idea</title>
 
 
       <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
@@ -31,31 +31,34 @@
       <a class="navbar-brand" href="#"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Discover</a></li>
+      <li class="active"><a href="">Discover</a></li>
       <li><a href="#">profile</a></li>
       <li><a href="#">logout</a></li>
       <!--<li><a href="#">Pagexxxxxxxxx 3</a></li>!-->
     </ul>
   </div>
 </nav>
+
+<h4>{{idea.id}}</h4> 
+<br> 
 <h4>{{idea.name}}</h4> 
-<br>
+<br> 
 <h5>{{idea.creator}}</h5>
 <br>
 <p>{{idea.description}}</p>
 <br>
 <p>{{idea.looking_for}}</p>
 <br>
-<p>{{likes}}</p>
+<p>{{idea.likes}}</p>
 </div>
 <div>
 <!--
   <input type="text" name="idea_comment" placeholder="Add a comment">
   <button type="submit" value="Comments" onclick="show_idea()">Comment</button>-->
 
-<form>
+<form action="{{url_for('add_comment')}}" method="post">
   <input type="text" name="comment">
-  <input type="submit" name="comment_button" class="">
+  <input type="submit" name="comment_button" class="comment_button">
 </form>
 
 </div>
@@ -69,7 +72,7 @@
   <div class="show_comments">
   <ul>
   {% for comment in comments %}
-    <li>{{comment.name}}</li>
+    <li>{{comment.comment}}</li>
   {% endfor %}
   </ul>
   </div>
