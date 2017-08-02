@@ -30,11 +30,12 @@
 
 				<div class="sign_in" align="right" display="inline" float="left">
  					<h3 class="1"> Sign in</h3>
- 					<h3 class="3" > Username </h3> <input type="text" name="first_name" placeholder="Username">
- 					<h3 class="3" > Password </h3> <input type="password" name="password" placeholder="Password"> <br> <br>
- 					
+ 					<form action='login' method='POST'>
+ 					<h3 class="3" > email </h3> <input type="text" name="email" placeholder="email">
+ 					<h3 class="3" > Password </h3> <input type="password" name="pw" placeholder="Password"> <br> <br>
  					<button class="b" type="submit" value="Sign In"> Sign In </button>
  					<p class="p1"> Don't have an account yet? <a href="/sign_up"> <br> Sign Up </a></p>
+ 					</form>
  				</div>
 
 	</table>

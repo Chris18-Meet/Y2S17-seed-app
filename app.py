@@ -48,13 +48,18 @@ def sign_up():
 @app.route('/discover',methods=["GET", "POST"])
 @login_required
 def discover():
-	if request.method == 'GET':
-        ideas_here=session.query(Idea).all()
-	    return render_template('discover.html',ideas=ideas_here)
+    if request.method == 'GET':
+        ideas_here = session.query(Idea).all()
+        return render_template('discover.html',ideas=ideas_here)
     else:
-    	search_here=request.form.get('search')
-	    return render_template('search.html',category_now=search_here)
+        search_here=request.form.get('search')
+        return redirect(url_for('search',category_now=search_here))
 
+@app.route('/my_ideas')
+@login_required
+def my_ideas():
+    my_ideas_here=session.query(Idea).filter_by(owner_id=current_user.id).all()
+    return render_template('my_ideas.html',my_ideass=my_ideas_here)
 
 # @app.route('/show_idea/<int:idea_id>', methods=['GET','POST'])
 # def show_idea(idea_id):
@@ -71,9 +76,9 @@ def discover():
 
 #         new_comment = Comment
 
-@app.route('/search/<string:category_now>')
+@app.route('/search/<string:category_now>', methods=["GET", "POST"])
 @login_required
-def search():
+def search(category_now):
     category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
     return render_template('search.html',category_ideas=category_ideas_here)
 
@@ -83,22 +88,34 @@ def search():
 def profile():
     return render_template('profile.html',first_name=current_user.first_name,last_name=current_user.last_name,profession=current_user.profession,linkedin_url=current_user.linkedin_url,image_url=current_user.photo)	
 
-@app.route('/show_idea/<int:idea_id>')
+@app.route('/show_idea/<int:idea_id>',methods=["GET", "POST"])
 def show_idea(idea_id):
-		idea = session.query(Idea).filter_by(id=idea_id).first()
-		comments = session.query(Comment).filter_by(idea=str(idea_id)).all()
-		return render_template('idea_profile.html', idea=idea, comments =comments)
+        if request.method == 'GET':
+            idea = session.query(Idea).filter_by(id=idea_id).first()
+            comments = session.query(Comment).filter_by(idea=str(idea_id)).all()
+            return render_template('idea_profile.html', idea=idea, comments =comments)
+        else:
+            new_comment=request.form.get('comment')
+            new_idea=str(idea_id)
+            new_owner=current_user.first_name
+            new_idea_id=current_user.id
+            new_comment=Comment(comment=new_comment,idea=new_idea,owner=new_owner)
+            session.add(new_comment)
+            session.commit()
+            return redirect(url_for('show_idea',idea_id=idea_id))
+# def add_comment():
+# 	if request.method == 'GET':
+#         return render_template('.html')
+#     else:  
+#         new_name          = request.form.get('idea_name')
+#         new_describtion   = request.form.get('describtion')
+#         new_looking_for   = request.form.get('looking_for')
+#         new_category      = request.form.get('category')
+#         new_idea = Idea(owner_id=current_user.id,name= new_name,describtion=new_describtion,looking_for=new_looking_for,owner=current_user.first_name,likes=0,category=new_category)
 
-@app.route('/comment/<int:idea_id>', methods=['GET', 'POST'])
-def add_comment(idea_id):
-	if request.method == 'POST':
-		comment_capture = request.form.get('comment')
-		new_owner = "sample user"
-		idea = str(idea_id)
-		new_comment = Comment(comment = comment_capture, idea=idea, owner = new_owner)
-		session.add(new_comment)
-		session.commit()	
-		return redirect(url_for('show_idea', idea_id=idea))
+#         session.add(new_idea)
+#         session.commit()
+#         return redirect(url_for('discover'))
 
 
 		
@@ -106,22 +123,22 @@ def add_comment(idea_id):
 		#describtion=new_idea.describtion,likes=new_idea.likes,looking_for=new_idea.looking_for)
 
 @app.route('/add_idea',methods=['GET','POST'])
-# @login_required
+@login_required
 def add_idea():
     if request.method == 'GET':
         return render_template('add_idea.html')
     else:  
         new_name          = request.form.get('idea_name')
-        new_describtion   = request.form.get('describtion')
+        new_description   = request.form.get('description')
         new_looking_for   = request.form.get('looking_for')
         new_category      = request.form.get('category')
-        new_idea = Idea(name= new_name,describtion=new_describtion,looking_for=new_looking_for,owner=current_user.first_name,likes=0,category=new_category)
+        new_idea = Idea(owner_id=current_user.id,name= new_name,description=new_description,looking_for=new_looking_for,owner=current_user.first_name,likes=0,category=new_category)
 
         session.add(new_idea)
         session.commit()
         return redirect(url_for('discover'))
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/sign_in', methods=['GET', 'POST'])
 def login():
     return login_handler(request)
 
@@ -136,3 +153,10 @@ def logout():
 def protected():
     return render_template('protected.html')
 
+
+@app.route('/add_random_user')
+def add_random_user():
+    random_user = User(first_name='hi',email='a@b.com')
+    session.add(random_user)
+    session.commit()
+    redirect(url_for('sign_up'))

@@ -21,15 +21,15 @@
 
 		<div>
 			<img class="image_url" src={{image_url}} width="100px" height="100px">
-			<h3 class="3">{{name}}</h3>
-			<h4 class="profession">{{(profession)}}</h4>
-				<div>
+			<h3 class="3">{{first_name}} {{last_name}}</h3>
+			<h4 class=""> Profession : {{(profession)}}</h4>
+			<!-- 	<div>
 					<h5>Biography:</h5>
-					<p>{{bio}}</p>
-				</div>
-			<a href="{{linkedin_url}}">LinkedIn Account</a>
-			<button class="my_ideas" type="submit" value="My Ideas"> My Ideas </button>
-			<button class="add_idea" type="submit" value="Add Idea"> Add Idea </button>
+					<input type="text" name="bio" value="{{biography}}"> 
+				</div> -->
+			<h4 class=""> Linkedin Account: {{linkedin_url}}</h4>
+			<a href="{{url_for('my_ideas')}}"> My Ideas </a>
+			<a href="{{url_for('add_idea')}}">  Add Idea
 		</div>
 	</body>
 </html>

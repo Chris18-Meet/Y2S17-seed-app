@@ -7,26 +7,27 @@ from werkzeug.security import generate_password_hash, check_password_hash
 Base = declarative_base()
 
 class Idea(Base):
-    __tablename__  = 'Ideas'
+    __tablename__  = 'idea'
     id             = Column(Integer, primary_key=True)
     name           = Column(String)
-    describtion    = Column(String)
+    description    = Column(String)
     looking_for    = Column(String)
     owner          = Column(String)
+    owner_id       = Column(Integer)
     likes          = Column(Integer)
     category       = Column(String)
 
     # ADD YOUR FIELD BELOW ID
 
 class Comment(Base):
-    __tablename__  = 'Comment'
+    __tablename__  = 'comment'
     id             = Column(Integer, primary_key=True)
     comment        = Column(String)
     idea           = Column(String)
     owner          = Column(String)
 
 class User(UserMixin, Base):
-    __tablename__  = 'Users'
+    __tablename__  = 'user'
     id             = Column(Integer, primary_key=True)
     first_name     = Column(String)
     last_name      = Column(String)

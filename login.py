@@ -29,7 +29,7 @@ def unauthorized_handler():
 
 def login_handler(request):
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('sign_in.html')
 
     email = request.form.get('email')
     pw    = request.form.get('pw')
@@ -39,8 +39,8 @@ def login_handler(request):
         if user.check_password(pw):
             login_user(user)
             return redirect(url_for('protected'))
-        return 'Wrong Password'
-    return 'Bad login'
+        flash('Wrong Password')
+    flash('Bad login')
 
 
 def logout_handler():

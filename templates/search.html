@@ -17,13 +17,13 @@
 <body>
 <h3 class="1"> {{category_name}}</h3>
  <div id="main">
-        {% for idea in ideas %}
+        {% for idea in category_ideas %}
           <div class="idea-container">
             <div class="idea-body">
-              <div class="tweet-name">{{idea.name}}</div>
+              <a href="{{url_for('idea_profile',idea_id=idea.id)}}"><div class="tweet-name">{{idea.name}}</div></a>
             </div>
             <div class="idea-footer">
-              <div class="tweet-user">{{tweet.describtion}}</div>
+              <div class="tweet-user">{{idea.description}}</div>
             </div>
           </div>
         {% endfor %}

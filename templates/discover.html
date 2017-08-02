@@ -18,15 +18,18 @@
 
 	<body>
 <h1 class="1"> Discover</h3>
+<form action="{{url_for('discover')}}", method="post">
 <h3 class="">search</h3> <input type="text" name="search" placeholder="search a category"> 
+<input type="submit" name="search_now" value="Search">
+</form>
  <div id="main">
         {% for idea in ideas %}
           <div class="idea-container">
             <div class="idea-body">
-              <div class="tweet-name">{{idea.name}}</div>
+              <a href="{{url_for('show_idea',idea_id=idea.id)}}"><div class="tweet-name">{{idea.name}}</div></a>
             </div>
             <div class="idea-footer">
-              <div class="tweet-user">{{tweet.describtion}}</div>
+              <div class="tweet-user">{{idea.description}}</div>
             </div>
           </div>
         {% endfor %}
