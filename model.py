@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 Base = declarative_base()
 
 class Idea(Base):
-    __tablename__  = 'idea'
+    __tablename__  = 'Ideas'
     id             = Column(Integer, primary_key=True)
     name           = Column(String)
     describtion    = Column(String)
@@ -19,14 +19,14 @@ class Idea(Base):
     # ADD YOUR FIELD BELOW ID
 
 class Comment(Base):
-    __tablename__  = 'comment'
+    __tablename__  = 'Comment'
     id             = Column(Integer, primary_key=True)
     comment        = Column(String)
     idea           = Column(String)
     owner          = Column(String)
 
 class User(UserMixin, Base):
-    __tablename__  = 'user'
+    __tablename__  = 'Users'
     id             = Column(Integer, primary_key=True)
     first_name     = Column(String)
     last_name      = Column(String)
@@ -36,7 +36,7 @@ class User(UserMixin, Base):
     linkedin_url   = Column(String)
     photo          = Column(String)
     authenticated  =Column(Boolean,default=False)
-    
+
     def __repr__(self):
       return "<User: %s, password: %s>" % (
         self.email, self.pw_hash)

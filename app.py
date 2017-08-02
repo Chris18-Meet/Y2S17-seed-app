@@ -45,10 +45,15 @@ def sign_up():
         return redirect(url_for('discover'))
 
 
-@app.route('/discover')
+@app.route('/discover',methods=["GET", "POST"])
 @login_required
 def discover():
-	return render_template('discover.html')
+	if request.method == 'GET':
+        ideas_here=session.query(Idea).all()
+	    return render_template('discover.html',ideas=ideas_here)
+    else:
+    	search_here=request.form.get('search')
+	    return render_template('search.html',category_now=search_here)
 
 
 # @app.route('/show_idea/<int:idea_id>', methods=['GET','POST'])
@@ -66,7 +71,11 @@ def discover():
 
 #         new_comment = Comment
 
-
+@app.route('/search/<string:category_now>')
+@login_required
+def search():
+    category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
+    return render_template('search.html',category_ideas=category_ideas_here)
 
 
 @app.route('/profile')
@@ -97,7 +106,7 @@ def add_comment(idea_id):
 		#describtion=new_idea.describtion,likes=new_idea.likes,looking_for=new_idea.looking_for)
 
 @app.route('/add_idea',methods=['GET','POST'])
-@login_required
+# @login_required
 def add_idea():
     if request.method == 'GET':
         return render_template('add_idea.html')
