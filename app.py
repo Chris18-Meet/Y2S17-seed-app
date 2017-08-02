@@ -21,25 +21,25 @@ login_manager.init_app(app)
 
 
 
-# @app.route('/', methods=['GET','POST'])
-# def sign_in():
-# 	if request.method == 'GET':
-# 		return render_template('sign_in.html')
-# 	else :
-# 		new_first_name=request.form.get('first_name')
-# 		check_name=session.query(User).filter_by(firstname=new_first_name).first()
-# 		new_pass=request.foem.get('password')
-# 		if check_name.name==new_first_name and check_name.password==new_pass:
-# 			flash('You were successfully logged in')
-# 			return render_template('discover.html')
-# 		else:
-# 			flash('Invalid credentials')
+@app.route('/sign_in', methods=['GET','POST'])
+def sign_in():
+	if request.method == 'GET':
+		return render_template('sign_in.html')
+	else :
+		new_first_name=request.form.get('first_name')
+		check_name=session.query(User).filter_by(firstname=new_first_name).first()
+		new_pass=request.foem.get('password')
+		if check_name.name==new_first_name and check_name.password==new_pass:
+			flash('You were successfully logged in')
+			return render_template('discover.html')
+		else:
+			flash('Invalid credentials')
     		
 
 @app.route('/sign_up', methods=["GET", "POST"])
 def sign_up():
     if request.method == 'GET':
-        return render_template('sign_up.html')
+        return ('sign_up.html')
     else:
         sign_up_handler(request)
         return redirect(url_for('discover'))
@@ -49,11 +49,11 @@ def sign_up():
 @login_required
 def discover():
 	if request.method == 'GET':
-        ideas_here=session.query(Idea).all()
-	    return render_template('discover.html',ideas=ideas_here)
-    else:
-    	search_here=request.form.get('search')
-	    return render_template('search.html',category_now=search_here)
+		ideas_here=session.query(Idea).all()
+		return render_template('discover.html',ideas=ideas_here)
+	else:
+		search_here=request.form.get('search')
+		return render_template('search.html',category_now=search_here)
 
 
 # @app.route('/show_idea/<int:idea_id>', methods=['GET','POST'])
@@ -74,14 +74,14 @@ def discover():
 @app.route('/search/<string:category_now>')
 @login_required
 def search():
-    category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
-    return render_template('search.html',category_ideas=category_ideas_here)
+	category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
+	return render_template('search.html',category_ideas=category_ideas_here)
 
 
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html',first_name=current_user.first_name,last_name=current_user.last_name,profession=current_user.profession,linkedin_url=current_user.linkedin_url,image_url=current_user.photo)	
+	return render_template('profile.html',first_name=current_user.first_name,last_name=current_user.last_name,profession=current_user.profession,linkedin_url=current_user.linkedin_url,image_url=current_user.photo)	
 
 @app.route('/show_idea/<int:idea_id>')
 def show_idea(idea_id):
@@ -108,31 +108,31 @@ def add_comment(idea_id):
 @app.route('/add_idea',methods=['GET','POST'])
 # @login_required
 def add_idea():
-    if request.method == 'GET':
-        return render_template('add_idea.html')
-    else:  
-        new_name          = request.form.get('idea_name')
-        new_describtion   = request.form.get('describtion')
-        new_looking_for   = request.form.get('looking_for')
-        new_category      = request.form.get('category')
-        new_idea = Idea(name= new_name,describtion=new_describtion,looking_for=new_looking_for,owner=current_user.first_name,likes=0,category=new_category)
+	if request.method == 'GET':
+		return render_template('add_idea.html')
+	else:  
+		new_name          = request.form.get('idea_name')
+		new_describtion   = request.form.get('describtion')
+		new_looking_for   = request.form.get('looking_for')
+		new_category      = request.form.get('category')
+		new_idea = Idea(name= new_name,describtion=new_describtion,looking_for=new_looking_for,owner=current_user.first_name,likes=0,category=new_category)
 
-        session.add(new_idea)
-        session.commit()
-        return redirect(url_for('discover'))
+		session.add(new_idea)
+		session.commit()
+		return redirect(url_for('discover'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return login_handler(request)
+	return login_handler(request)
 
 
 @app.route('/logout')
 def logout():
-  return logout_handler()
+	return logout_handler()
 
 
 @app.route('/protected', methods=["GET"])
 @login_required
 def protected():
-    return render_template('protected.html')
+	return render_template('protected.html')
 
