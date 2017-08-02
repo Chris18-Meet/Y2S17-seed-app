@@ -17,6 +17,22 @@
 	</head>
 
 	<body>
-  hello {{current_user.email}}
+<h1 class="1"> Discover</h3>
+<h3 class="">search</h3> <input type="text" name="search" placeholder="search a category"> 
+ <div id="main">
+        {% for idea in ideas %}
+          <div class="idea-container">
+            <div class="idea-body">
+              <div class="tweet-name">{{idea.name}}</div>
+            </div>
+            <div class="idea-footer">
+              <div class="tweet-user">{{tweet.describtion}}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+    </div>
+
   </body>
   </html>
