@@ -25,21 +25,23 @@
 </div>
 <div class="">
   <h4>Add Idea</h4> 
-  {{current_user.email}}
+  {{current_user.name}}
+  <form action="{{url_for('add_idea')}}"  method='post'>
   <h3 class=""> Idea name </h3> 
-  <input type="text" name="idea_name" placeholder="Idea_name">
+  <input type="text" name="idea_name" placeholder="Idea name">
   <br>
   <h3 class=""> Describtion </h3> 
   <input type="text" name="describtion" placeholder="Short Describtion">
   <br>
   <h3 class=""> What are you looking for ? </h3> 
-  <input type="text" name="looking_for" placeholder="What Do You Need To Make It Work?">
+  <input type="text" name="looking_for" placeholder="What are you looking for?">
   <br>
   <h3 class=""> Category</h3> 
   <input type="text" name="category" placeholder="category">
 </div>
 <div class="publish_button">
-  <button type="button">Publish</button>
+  <button type="submit">Publish</button>
+  </form>
 </div>
   </body>
 </html>
