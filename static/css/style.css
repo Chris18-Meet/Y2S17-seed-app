@@ -19,7 +19,7 @@
     text-decoration: none;
 }
 
-.li2 li a:hover:not(.active) {
+.li2 li  a:hover:not(.active) {
     background-color: #ddd;
 }
 
