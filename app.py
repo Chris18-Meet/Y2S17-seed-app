@@ -66,7 +66,11 @@ def discover():
 
 #         new_comment = Comment
 
-
+@app.route('/search/<string:category_now>')
+@login_required
+def show_idea():
+    category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
+    return render_template('search.html',category_ideas=category_ideas_here)
 
 
 @app.route('/show_idea/<int:idea_id>')
