@@ -69,7 +69,10 @@
   <div class="show_comments">
   <ul>
   {% for comment in comments %}
-    <li>{{comment.name}}</li>
+    <li><a href="{{url_for('profile')}}">{{comment.owner}}</a></li>
+
+    <li>{{comment.comment}}</li>
+
   {% endfor %}
   </ul>
   </div>
