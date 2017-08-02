@@ -85,7 +85,7 @@ def profile():
     return render_template('profile.html',first_name=current_user.first_name,last_name=current_user.last_name,profession=current_user.profession,linkedin_url=current_user.linkedin_url,image_url=current_user.photo)	
 
 @app.route('/add_idea',methods=['GET','POST'])
-@login_required
+# @login_required
 def add_idea():
     if request.method == 'GET':
         return render_template('add_idea.html')
