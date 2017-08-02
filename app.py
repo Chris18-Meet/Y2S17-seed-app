@@ -66,14 +66,23 @@ def discover():
 
 #         new_comment = Comment
 
-
+@app.route('/search/<string:category_now>')
+@login_required
+def show_idea():
+    category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
+    return render_template('search.html',category_ideas=category_ideas_here)
 
 
 @app.route('/show_idea/<int:idea_id>')
+@login_required
 def show_idea():
-	new_idea=session.query(idea).filter_by(id=idea_id).first()
+	new_idea=session.query(Idea).filter_by(id=idea_id).first()
 	return render_template('idea_profile.html',idea_name=new_idea.name,creator=new_idea.owner,describtion=new_idea.describtion,likes=new_idea.likes,looking_for=new_idea.looking_for)
-	
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html',first_name=current_user.first_name,last_name=current_user.last_name,profession=current_user.profession,linkedin_url=current_user.linkedin_url,image_url=current_user.photo)	
 
 @app.route('/add_idea',methods=['GET','POST'])
 @login_required

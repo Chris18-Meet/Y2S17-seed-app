@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Profile</title>
+<head><title>Discover</title>
       <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
       <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
 
@@ -14,22 +13,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
+</head>
+<body>
+<h3 class="1"> {{category_name}}</h3>
+ <div id="main">
+        {% for idea in ideas %}
+          <div class="idea-container">
+            <div class="idea-body">
+              <div class="tweet-name">{{idea.name}}</div>
+            </div>
+            <div class="idea-footer">
+              <div class="tweet-user">{{tweet.describtion}}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+    </div>
 
-	<body>
-	
-
-		<div>
-			<img class="image_url" src={{image_url}} width="100px" height="100px">
-			<h3 class="3">{{last_name}}</h3>
-			<h4 class="profession">{{(profession)}}</h4>
-				<!-- <div>
-					<h5>Biography:</h5>
-					<p>{{bio}}</p>
-				</div> -->
-			<h4 class="profession">{{linkedin_url}}</h4>
-			<button class="my_ideas" type="submit" value="My Ideas"> My Ideas </button>
-			<button class="add_idea" type="submit" value="Add Idea"> Add Idea </button>
-		</div>
-	</body>
 </html>
