@@ -21,19 +21,6 @@ login_manager.init_app(app)
 
 
 
-@app.route('/', methods=['GET','POST'])
-def sign_in():
-	if request.method == 'GET':
-		return render_template('sign_in.html')
-	else :
-		new_first_name=request.form.get('first_name')
-		check_name=session.query(User).filter_by(firstname=new_first_name).first()
-		new_pass=request.foem.get('password')
-		if check_name.name==new_first_name and check_name.password==new_pass:
-			flash('You were successfully logged in')
-			return render_template('discover.html')
-		else:
-			flash('Invalid credentials')
     		
 
 @app.route('/sign_up', methods=["GET", "POST"])
@@ -90,7 +77,7 @@ def my_ideas():
 # <<<<<<< HEAD
 def search(category_now):
     category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
-    return render_template('search.html',category_ideas=category_ideas_here)
+    return render_template('search.html',category_ideas=category_ideas_here,category_name=category_now)
 # =======
 # def search():
 # 	category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
@@ -170,7 +157,8 @@ def add_idea():
 
 @app.route('/sign_in', methods=['GET', 'POST'])
 def login():
-	return login_handler(request)
+    login_handler(request)
+
 
 
 @app.route('/logout')
