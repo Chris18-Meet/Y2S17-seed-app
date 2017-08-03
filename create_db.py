@@ -4,5 +4,5 @@ from sqlalchemy.ext.declarative import declarative_base
 # REPLACE YourModel with the one that you created in model.py
 from model import *
 
-engine = create_engine('sqlite:///project.db')
+engine = create_engine('sqlalchemyqlite:///project.db')
 Base.metadata.create_all(engine)
