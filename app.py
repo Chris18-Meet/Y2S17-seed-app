@@ -21,7 +21,7 @@ login_manager.init_app(app)
 
 
 
-@app.route('/sign_in', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def sign_in():
 	if request.method == 'GET':
 		return render_template('sign_in.html')
