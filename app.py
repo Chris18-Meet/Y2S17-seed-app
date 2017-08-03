@@ -93,7 +93,7 @@ def add_idea():
 ############ LOGIN ############
 @app.route('/sign_in', methods=['GET', 'POST'])
 def login():
-    login_handler(request)
+    return login_handler(request)
 
 
 
