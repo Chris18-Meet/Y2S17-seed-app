@@ -52,7 +52,17 @@ li a.active {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h3 class="1">Category</h3>
+
+
+<ul>
+  <li><a class="active" href="/discover">Discover</a></li>
+  <li><a href="/profile">profile</a></li>
+  <li><a href="/logout">logout</a></li>
+
+</ul>
+
+<h3 class="1"> Category</h3>
+
 <h3 class="1"> {{category_name}}</h3>
  <div id="main">
         {% for idea in category_ideas %}

@@ -20,6 +20,10 @@ from login import login_manager, login_handler, logout_handler, sign_up_handler
 login_manager.init_app(app)
 
 
+
+    		
+
+
 @app.route('/discover',methods=["GET", "POST"])
 @login_required
 def discover():
@@ -43,6 +47,7 @@ def my_ideas():
 def search(category_now):
     category_ideas_here=session.query(Idea).filter_by(category=category_now).all()
     return render_template('search.html',category_ideas=category_ideas_here,category_name=category_now)
+
 
 
 @app.route('/profile')
@@ -88,7 +93,8 @@ def add_idea():
 ############ LOGIN ############
 @app.route('/sign_in', methods=['GET', 'POST'])
 def login():
-	return login_handler(request)
+    login_handler(request)
+
 
 
 @app.route('/logout')
