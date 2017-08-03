@@ -39,7 +39,7 @@ def sign_in():
 @app.route('/sign_up', methods=["GET", "POST"])
 def sign_up():
     if request.method == 'GET':
-        return ('sign_up.html')
+        return render_template('sign_up.html')
     else:
         sign_up_handler(request)
         return redirect(url_for('discover'))
