@@ -3,9 +3,6 @@
     <head>
 
 
-<style type="text/css">body {
-    background-image: url("TeamCoaching.jpg");
-    }</style>
       <title>Hello</title>
 
 
@@ -18,26 +15,32 @@
       <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 	</head>
 
-	<body >
+	<body class="body_sign_in">
 
 <!-- Put the <p> on the right, add a picture above it (logo) and put the sign in inputs and shit (seciind div) on the left!! -->
 
-			<p>team up your idea</p>
+			
 				
 			</div text_align=center>
 
-				<div class="sign_in" align="right" display="inline" float="left">
- 					<h3 class="1"> Sign in</h3>
+				<div class="" align="right" display="inline" float="left">
+ 					<h3 class="enjoy-css" align="left"> Sign in</h3>
+          <p class="enjoy-css1">team up your idea</p>
  					<form action="{{url_for('login')}}" method='POST'>
- 					<h3 class="3" > email </h3> <input type="text" name="email" placeholder="email">
- 					<h3 class="3" > Password </h3> <input type="password" name="pw" placeholder="Password"> <br> <br>
+          <table align="center">
+ 					<tr><td><h3 class="enjoy-css2" > email </h3> </td>
+          <td><input type="text" name="email" placeholder="email" class="input"></td></tr>
+ 					<tr><td><h3 class="enjoy-css2" > Password </h3> </td>
+          <td><input type="password" name="pw" placeholder="Password" class="input"> </td></tr>
+          <tr>
  					<button class="b" type="submit" value="Sign In"> Sign In </button>
-
- 					<p class="p1"> Don't have an account yet? <a href="{{url_for('sign_up')}}"> <br> Sign Up </a></p>
-
+          </tr>
+          <tr>
+ 					<p class="enjoy-css2"> Don't have an account yet? <a href="{{url_for('sign_up')}}"> <br> Sign Up </a></p>
+          </tr>
+          </table>
+          </form>
  				</div>
-
-	</table>
 
 	</body>
 </html>

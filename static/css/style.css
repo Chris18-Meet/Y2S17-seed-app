@@ -1,7 +1,55 @@
+.body_sign_in
+{
+	background-image: url("TeamCoaching.png");
+}
+.enjoy-css {
+  font: normal normal bold 113px/1 "annie-use-your-telescope", Helvetica, sans-serif;
+  color: rgba(255,255,255,1);
+  text-align: center;
+  text-indent: 1px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
 
-#hands_img
-    {
-        /*background-image: url("TeamCoaching.jpg");*/
-    }
+.enjoy-css1 {
+  font: normal 35px/1 "annie-use-your-telescope", Helvetica, sans-serif;
+  color: white;
+  position: relative;
+  left: -420px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
 
+.enjoy-css2 {
+  font: normal 27px/1 Georgia, serif;
+  color: #BCA77C;
+  /*position: relative;
+  left: -130px;*/
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.input {
+  /*position: relative;
+  left: -480px;*/
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 10px 20px;
+  border: 1px solid #b7b7b7;
+  -webkit-border-radius: 11px;
+  border-radius: 11px;
+  font: normal 16px/normal "Times New Roman", Times, serif;
+  color: rgba(0,142,198,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(252,252,252,1);
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
