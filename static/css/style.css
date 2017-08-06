@@ -20,13 +20,27 @@
 }
 
 .enjoy-css2 {
-  font: normal 27px/1 Georgia, serif;
-  color: #BCA77C;
+  font: normal normal bold 27px/1 Georgia, serif;
+  color: white;
   /*position: relative;
   left: -130px;*/
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   text-align: center;
+}
+
+.enjoy-css3 {
+  font: normal normal bold 27px/1 Georgia, serif;
+  color: white;
+  position: relative;
+  left: 500px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.b {
+	position: relative;
+  left: -120px;
 }
 
 .input {
